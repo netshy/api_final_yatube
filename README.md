@@ -49,7 +49,7 @@ ___Примечание.___
 * Токен `access` нужно сохранить и бережно *хранить*.
 * Жизнь токена 1 год, в настройках можно изменить.
 
-![](https://i.ibb.co/zXcRxFL/Screenshot-from-2020-04-27-16-59-18.png)
+![](https://i.ibb.co/zXcRxFL/image.png)
 
 #### Создаем новый пост
 
@@ -57,11 +57,11 @@ ___Примечание.___
 
 * __Обязательное поле: `text`__
 
-![](//i.ibb.co/fXbtQJ1/image.png)
+![](https://i.ibb.co/fXbtQJ1/image.png)
 
 #### Фильтруем посты по номеру группы
 
 Передаем GET-запрос, в `params` указываем поле __group__.
 
-![](//i.ibb.co/DMV9kfk/image.png)
+![](https://i.ibb.co/DMV9kfk/image.png)
 
