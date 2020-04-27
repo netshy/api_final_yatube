@@ -2,7 +2,7 @@
 env/
 venv/
 .venv/
-api/migrations/
+
 
 __pycache__/
 *.py[cod]
