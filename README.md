@@ -13,23 +13,23 @@
 ## Установка 
 Клонируем репозиторий на локальную машину:
 
->```$ git clone https://github.com/netshy/api_final_yatube.git```
+```$ git clone https://github.com/netshy/api_final_yatube.git```
 
  Создаем виртуальное окружение:
  
- >```$ python -m venv venv```
+ ```$ python -m venv venv```
  
  Устанавливаем зависимости:
 
->```$ pip isntall -r requrements.txt```
+```$ pip isntall -r requrements.txt```
 
 Создание и применение миграций:
 
->```$ python manage.py makemigrations``` и ```$ python manage.py migrate```
+```$ python manage.py makemigrations``` и ```$ python manage.py migrate```
 
 Запускаем django сервер:
 
->```$ python manage.py runserver```
+```$ python manage.py runserver```
 
 Все готово к использованию API
 
@@ -49,7 +49,7 @@ ___Примечание.___
 * Токен `access` нужно сохранить и бережно *хранить*.
 * Жизнь токена 1 год, в настройках можно изменить.
 
-![](//i.ibb.co/dP92Mt3/image.png)
+![](//i.ibb.co/zXcRxFL/Screenshot-from-2020-04-27-16-59-18.png)
 
 #### Создаем новый пост
 
