@@ -2,18 +2,18 @@ from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from rest_framework.mixins import CreateModelMixin, ListModelMixin
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 
 from api.permissions import IsAuthorOrReadOnly
 from api.serializers import PostSerializer, CommentSerializer, FollowSerializer, GroupSerializer
-from api.models import Post, Follow, Group, User
+from api.models import Post, Follow, Group
 
 
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [AllowAny, IsAuthorOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['group', ]
 
@@ -22,7 +22,7 @@ class PostViewSet(ModelViewSet):
 
 
 class CommentViewSet(ModelViewSet):
-    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
     serializer_class = CommentSerializer
 
     def get_queryset(self):
@@ -36,18 +36,16 @@ class CommentViewSet(ModelViewSet):
 
 class GroupViewSet(CreateModelMixin, ListModelMixin, GenericViewSet):
     queryset = Group.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly, ]
     serializer_class = GroupSerializer
-    permission_classes = [AllowAny, ]
 
 
 class FollowViewSet(CreateModelMixin, ListModelMixin, GenericViewSet):
     queryset = Follow.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly, ]
     serializer_class = FollowSerializer
-    permission_classes = [IsAuthorOrReadOnly, ]
     filter_backends = [SearchFilter, ]
     search_fields = ['=user__username', '=following__username', ]
 
     def perform_create(self, serializer):
-        username = serializer.validated_data['following'].get('username')
-        following = get_object_or_404(User, username=username)
-        serializer.save(user=self.request.user, following=following)
+        serializer.save(user=self.request.user, following=serializer.validated_data['following'])
