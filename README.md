@@ -20,7 +20,7 @@
  
  Устанавливаем зависимости:
 
-```$ pip isntall -r requirements.txt```
+```$ pip install -r requirements.txt```
 
 Создание и применение миграций:
 
